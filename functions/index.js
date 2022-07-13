@@ -27,12 +27,12 @@ exports.handler = async () => {
     const banner = await getBanner();
 
     // get the remote image as binary buffer
-    console.log(banner['Generated Twitter Banner']);
-    const response = await axios(`${banner['Generated Twitter Banner']}`, { responseType: 'arraybuffer' });
+    console.log(banner['Twitter Banner URL']);
+    const response = await axios(`${banner['Twitter Banner URL']}`, { responseType: 'arraybuffer' });
 
     // upload from the response
     const res = await client.v1.updateAccountProfileBanner(response.data, { width: 1500, height: 500, offset_left: 0 });
     console.log("upload result", res);
 
-    return { statusCode: 200, body: `${banner['Generated Twitter Banner']}` };
+    return { statusCode: 200, body: `${banner['Twitter Banner URL']}` };
 }
