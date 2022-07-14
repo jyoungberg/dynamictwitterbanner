@@ -3,7 +3,7 @@ const Airtable = require('airtable');
 const axios = require('axios');
 
 const getBanner = () => {
-    const base = new Airtable({ apiKey: 'keymhJ3fBNpHYVzY1' }).base('apptAJBHpY9GrSirU');
+    const base = new Airtable({ apiKey: process.env.apiKey }).base(process.env.baseKey);
     return new Promise((resolve, reject) => {
         base('Newest Twitter Banner')
             .select({ view: "Full view" })
@@ -18,10 +18,10 @@ const getBanner = () => {
 
 exports.handler = async () => {
     const client = new TwitterApi({
-        appKey: 'zxJl83huxKutwnNJCLa3mHsGa',
-        appSecret: 'BM7AS4nzsHAXZoVtzIQgI0MVGzxHpgdhcOK67oetKdN9OZ8HaQ',
-        accessToken: '1545808754314465280-bNtULsr787BlIks0yNevmoLIbepgMx',
-        accessSecret: 'mh33RwVGEKmrCjijYg2Qj8A84pbJonC5Cm5U0CtWtHZj7'
+        appKey: process.env.appKey,
+        appSecret: process.env.appSecret,
+        accessToken: process.env.accessToken,
+        accessSecret: process.env.accessSecret
     });
 
     const banner = await getBanner();
